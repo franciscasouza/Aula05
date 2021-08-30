@@ -6,42 +6,61 @@ namespace Aula05
     {
         static void Main(string[] args)
         {
-            /*Cirar Instituiçao e Criar Departamentos*/
 
-            Instituicao ie1 = new Instituicao();
-            string nome, endereco;
-            nome = ie1.Nome;
-            endereco = ie1.Endereco;
+            /*Criando a Instituição*/
 
-            nome = "Vasco Coutinho";
-            endereco = "Luciano das Neves";
+            Instituicao ie1 = new Instituicao
+            {
 
-            Console.WriteLine($"Nome: {nome}");
-            Console.WriteLine($"Endereço: {endereco}");
+                Nome = "Ceet Vasco Coutinho",
+                Endereco = new Endereco()
+                {
+                    Rua = "Luciano das Neves",
+                    Bairro = "Centro de Vila Velha",
+                    Numero = "s/n"
+                }
+              
+            };
+
+            /*Exibindo dados da Instituição*/
+            Console.WriteLine(ie1.Nome);
+            Console.WriteLine("Rua: "+ie1.Endereco.Rua);
+            Console.WriteLine("Bairro: " + ie1.Endereco.Bairro);
+            Console.WriteLine("Numero: " + ie1.Endereco.Numero);
+
+            Console.ReadKey();
+            Console.WriteLine();
+            Console.WriteLine("Departamentos da Instituição: "+ie1.Nome);
+            Console.WriteLine();
+            Console.ReadKey();
+
+            /*Criando os Departamentos*/
 
             Departamento d = new Departamento();
-            string nomeDpto = "Informatica";
+            string nomeDpto = "Tecnologia da Informação";
             d.Nome = nomeDpto;
-
-            //Console.WriteLine($"Departamento: {nomeDpto}");
+           
             Departamento d1 = new Departamento();
-            string nomeDpto1 = "Redes";
+            string nomeDpto1 = "Gestão e Negocios";
             d1.Nome = nomeDpto1 ;
 
             Departamento d2 = new Departamento();
-            string nomeDpto2 = "Jogos";
+            string nomeDpto2 = "Produção e Moda";
             d2.Nome = nomeDpto2;
-            Departamento d3 = new Departamento();
-            string nomeDpto3 = "RTV";
-            d3.Nome = nomeDpto3; 
 
+            Departamento d3 = new Departamento();
+            string nomeDpto3 = "Eventos";
+            d3.Nome = nomeDpto3; 
+            /*Fim criar departamento*/
+
+            /*Registrando para a instituição ie1 os departamentos dela*/
             ie1.RegistrarDepartamento(d);
             ie1.RegistrarDepartamento(d1);
             ie1.RegistrarDepartamento(d2);
             ie1.RegistrarDepartamento(d3);
 
 
-            /*Departamentos na IE*/
+            /*Listando os departamentos na IE*/
 
             for (int i = 0; i < ie1.ObterQuantidadeDepartamentos(); i++)
             {
@@ -49,9 +68,48 @@ namespace Aula05
 
             }
 
-            Console.WriteLine(ie1.ObterQuantidadeDepartamentos());
+
+            Console.WriteLine("Cursos do Departamento "+d.Nome);
+
+            Console.ReadKey();
+
+            /*Inserindo os cursos de cada departamento*/
+
+            d.RegistrarCurso(new Curso
+            {
+                Nome = "Ciência de Dados",
+                CargaHoraria = 1200,
+            });
+            d.RegistrarCurso(new Curso
+            {
+                Nome = "Informática Báscica",
+                CargaHoraria = 200,
+            });
+
+            /*Mostrando os cursos inseridos*/
+            foreach (var curso in d.Cursos)
+            {
+                Console.WriteLine($"==>	{curso.Nome}	({curso.CargaHoraria}h)");
+            }
+
+            /*Fechar o departamento*/
+
+            d.FecharDepartamento();
+            d.Nome = null;
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("O	departamento	de	Tecnologia da Informação 	foi	fechado");
+            Console.ReadKey();
+
+            /*Mostrar os departamentos com a retirada de um deles*/
+
+            for (int i = 0; i < ie1.ObterQuantidadeDepartamentos(); i++)
+            {
+                Console.WriteLine($"==>	{ie1.Departamentos[i].Nome}");
+
+            }
 
 
-    }
+        }
     }
 }
