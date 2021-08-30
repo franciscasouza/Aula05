@@ -19,18 +19,18 @@ namespace Aula05
                     Bairro = "Centro de Vila Velha",
                     Numero = "s/n"
                 }
-              
+
             };
 
             /*Exibindo dados da Instituição*/
             Console.WriteLine(ie1.Nome);
-            Console.WriteLine("Rua: "+ie1.Endereco.Rua);
+            Console.WriteLine("Rua: " + ie1.Endereco.Rua);
             Console.WriteLine("Bairro: " + ie1.Endereco.Bairro);
             Console.WriteLine("Numero: " + ie1.Endereco.Numero);
 
             Console.ReadKey();
             Console.WriteLine();
-            Console.WriteLine("Departamentos da Instituição: "+ie1.Nome);
+            Console.WriteLine("Departamentos da Instituição: " + ie1.Nome);
             Console.WriteLine();
             Console.ReadKey();
 
@@ -39,10 +39,10 @@ namespace Aula05
             Departamento d = new Departamento();
             string nomeDpto = "Tecnologia da Informação";
             d.Nome = nomeDpto;
-           
+
             Departamento d1 = new Departamento();
             string nomeDpto1 = "Gestão e Negocios";
-            d1.Nome = nomeDpto1 ;
+            d1.Nome = nomeDpto1;
 
             Departamento d2 = new Departamento();
             string nomeDpto2 = "Produção e Moda";
@@ -50,7 +50,7 @@ namespace Aula05
 
             Departamento d3 = new Departamento();
             string nomeDpto3 = "Eventos";
-            d3.Nome = nomeDpto3; 
+            d3.Nome = nomeDpto3;
             /*Fim criar departamento*/
 
             /*Registrando para a instituição ie1 os departamentos dela*/
@@ -69,7 +69,7 @@ namespace Aula05
             }
 
 
-            Console.WriteLine("Cursos do Departamento "+d.Nome);
+            Console.WriteLine("Cursos do Departamento " + d.Nome);
 
             Console.ReadKey();
 
@@ -108,6 +108,37 @@ namespace Aula05
                 Console.WriteLine($"==>	{ie1.Departamentos[i].Nome}");
 
             }
+
+            var ctAlimentos = new Curso()
+            {
+                Nome = "Tecnologia	em	Alimentos",
+                CargaHoraria = 2000
+            };
+
+            if (!d.Cursos.Contains(ctAlimentos))
+                d.RegistrarCurso(ctAlimentos);
+            Console.ReadKey();
+            /*Mostrando os cursos inseridos*/
+
+            /*Inserindo os cursos de cada departamento*/
+
+            d.RegistrarCurso(new Curso
+            {
+                Nome = "Ciência de Dados",
+                CargaHoraria = 1200,
+            });
+            d.RegistrarCurso(new Curso
+            {
+                Nome = "Informática Báscica",
+                CargaHoraria = 200,
+            });
+
+            /*Mostrando os cursos inseridos*/
+            foreach (var curso in d.Cursos)
+            {
+                Console.WriteLine($"==>	{curso.Nome}	({curso.CargaHoraria}h)");
+            }
+
 
 
         }
